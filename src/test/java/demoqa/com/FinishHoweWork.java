@@ -42,26 +42,23 @@ public class FinishHoweWork {
         $("#city").click();
         $("#stateCity-wrapper").$(byText("Noida")).click();
         $("#submit").click();
+
+        $(".modal-header").shouldHave(text("Thanks for submitting the form"));
+        $(".modal-content").shouldHave(
+                text("Anna Grishina"),
+                text("aaa@aa.aa"),
+                text("Female"),
+                text("8912345678"),
+                text("29 July,1990"),
+                text("Math"),
+                text("Sports"),
+                text("img/1.png"),
+                text("Krasnaya, 1-1-11"),
+                text("NCR Noida"));
     }
-        @Test
-        void shouldHave () {
-            $(".modal-header").shouldHave(text("Thanks for submitting the form"));
-            $(".modal-content").shouldHave(
-                    text("Anna Grishina"),
-                    text("aaa@aa.aa"),
-                    text("Female"),
-                    text("8912345678"),
-                    text("29 July,1990"),
-                    text("Math"),
-                    text("Sports"),
-                    text("img/1.png"),
-                    text("Krasnaya, 1-1-11"),
-                    text("NCR Noida"));
-        }
 
     @AfterEach
     void AfterEach() {
         closeWebDriver();
     }
 }
-
