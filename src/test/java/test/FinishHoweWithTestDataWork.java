@@ -20,7 +20,7 @@ public class FinishHoweWithTestDataWork extends TestBase {
         $("#firstName").setValue(firstName);
         $("#lastName").setValue("Grishina");
         $("#userEmail").setValue("aaa@aa.aa");
-        $("#genterWrapper").$(byText("Female")).click(); //самый нормальный вариант
+        $("#genterWrapper").$(byText("Female")).click();
         $("#userNumber").setValue("8912345678");
         $("#dateOfBirthInput").click();
         $(".react-datepicker__month-select").click();

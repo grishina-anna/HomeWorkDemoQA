@@ -10,24 +10,27 @@ import java.util.Locale;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
+import static guru.qa.utils.RandomUtils.getRandomInt;
 import static guru.qa.utils.RandomUtils.getRandomString;
 
 public class FinishHoweWithTRandomWithFakerWork extends TestBase {
 
     Faker faker = new Faker(new Locale("ru"));
-//    Faker faker = new Faker();
+    //    Faker faker = new Faker();
     String firstName = faker.name().firstName();
     String lastName = faker.name().lastName();
+    String email = faker.internet().emailAddress();
     String streetAdress = faker.address().streetAddress();
+    String userNumber = faker.number().digits(10);
 
      @Test
     void fillFormTest() {
         open("/automation-practice-form");
         $("#firstName").setValue(firstName);
         $("#lastName").setValue(lastName);
-        $("#userEmail").setValue("aaa@aa.aa");
+        $("#userEmail").setValue(email);
         $("#genterWrapper").$(byText("Female")).click(); //самый нормальный вариант
-        $("#userNumber").setValue("8912345678");
+        $("#userNumber").setValue(userNumber);
         $("#dateOfBirthInput").click();
         $(".react-datepicker__month-select").click();
         $(".react-datepicker__month-select").selectOption("July");
@@ -47,9 +50,9 @@ public class FinishHoweWithTRandomWithFakerWork extends TestBase {
         $(".modal-header").shouldHave(text("Thanks for submitting the form"));
         $(".modal-content").shouldHave(
                 text(firstName + lastName),
-                text("aaa@aa.aa"),
+                text(email),
                 text("Female"),
-                text("8912345678"),
+                text(userNumber),
                 text("29 July,1990"),
                 text("Math"),
                 text("Sports"),

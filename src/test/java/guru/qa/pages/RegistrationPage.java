@@ -20,7 +20,7 @@ public class RegistrationPage {
             resultTable = $(".table-responsive");
     public CalendarComponents calendar = new CalendarComponents();
 
-    //дейстия
+    //дейстdвия
     public void openPage() {
         open("/automation-practice-form");
         formTitle.shouldHave(text("FORM_TITLE"));

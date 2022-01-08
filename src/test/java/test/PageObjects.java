@@ -1,5 +1,6 @@
 package test;
 
+import guru.qa.pages.RegistrationPage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import test.TestBase;
@@ -10,12 +11,15 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-public class PageObjects extends TestBase { //вынесли в отдельный файл базовые настройки
+public class PageObjects extends TestBase {
+
+    RegistrationPage registrationPage = new RegistrationPage();
 
     @Test
     void fillFormTest() {
-        open("/automation-practice-form");
-        $("#firstName").setValue("Anna");
+        registrationPage.openPage();
+        registrationPage.typeFirstName("Anna");
+
         $("#lastName").setValue("Grishina");
         $("#userEmail").setValue("aaa@aa.aa");
         $("#genterWrapper").$(byText("Female")).click();
