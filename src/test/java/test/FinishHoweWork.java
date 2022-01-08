@@ -1,9 +1,8 @@
-package demoqa.com;
+package test;
 
-import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import test.TestBase;
 
 import java.io.File;
 
@@ -11,15 +10,9 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-public class FinishHoweWork {
+public class FinishHoweWork extends TestBase {
 
-    @BeforeAll
-    static void setUp() {
-        Configuration.baseUrl = "https://demoqa.com";
-        Configuration.startMaximized = true;
-    }
-
-    @Test
+     @Test
     void fillFormTest() {
         open("/automation-practice-form");
         $("#firstName").setValue("Anna");
