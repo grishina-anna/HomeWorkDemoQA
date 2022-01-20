@@ -9,57 +9,52 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class RegistrationPage {
-    //локаторы и элементы
     private final String FORM_TITLE = "Student Registration Form";
     private SelenideElement
             formTitle = $(".practice-form-wrapper"),
             firstNameInput = $("#firstName"),
             lastNameInput = $("#lastName"),
-            EmailInput = $("#Email"),
-            genterWrapperInput = $("Female"),
+            userEmailInput = $("#userEmail"),
+            userGenderFemale = $(byText("Female")),
+            UserNumberInput = $("#userNumber"),
             resultTable = $(".table-responsive");
+
     public CalendarComponents calendar = new CalendarComponents();
 
-    //дейстdвия
-    public void openPage() {
-        open("/automation-practice-form");
-        formTitle.shouldHave(text("FORM_TITLE"));
+    public RegistrationPage openPage() {
+        open("https://demoqa.com/automation-practice-form");
+        formTitle.shouldHave(text(FORM_TITLE));
+        return this;
     }
-//        public void typeFirstName(String value) { //если void. то мы не ждем ответа, поэтому меняем на RegistrationPage
+
+    //        public void typeFirstName(String value) { //если void. то мы не ждем ответа, поэтому меняем на RegistrationPage
     public RegistrationPage typeFirstName(String value) { // после этого, можно удалить registrationPage. на странице с тестом
         firstNameInput.setValue(value);
-        return this; //вернуть объект класса
+        return this;
     }
+
     public RegistrationPage typeLastName(String value) {
         lastNameInput.setValue(value);
         return this;
-            }
-    public RegistrationPage typeEmail (String value) {
-        EmailInput.setValue(value);
-        return this;
     }
-    public RegistrationPage typeGenterWrapper (String value) {
-        genterWrapperInput.setValue(value).click();
-        return this;
-    }
-//    public RegistrationPage userEmail(String value) {
-//        userEmailInput.setValue(value);
-//        return this;
-//    }
-//    public RegistrationPage userEmail(String value) {
-//        userEmailInput.setValue(value);
-//        return this;
-//    }
-//    public RegistrationPage userEmail(String value) {
-//        userEmailInput.setValue(value);
-//        return this;
-//    }
-//    public RegistrationPage userEmail(String value) {
-//        userEmailInput.setValue(value);
-//        return this;
-//    }
 
-    public RegistrationPage checkResultsvalue(String key, String value ) {
+    public RegistrationPage typeUserEmail(String value) {
+        userEmailInput.setValue(value);
+        return this;
+    }
+
+    public RegistrationPage selectUserGender() {
+        userGenderFemale.click();
+        return this;
+    }
+
+    public RegistrationPage typeUserNumber() {
+        UserNumberInput.setValue("8912345678");
+        return this;
+    }
+
+
+    public RegistrationPage checkResultsvalue(String key, String value) {
         resultTable.$(byText(key))
                 .parent().shouldHave(text(value));
         return this;

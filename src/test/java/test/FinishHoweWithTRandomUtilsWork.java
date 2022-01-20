@@ -43,13 +43,9 @@ public class FinishHoweWithTRandomUtilsWork extends TestBase {
         $(".modal-content").shouldHave(
                 text(firstName + "Grishina"),
                 text("aaa@aa.aa"),
-                text("Female"),
                 text("8912345678"),
                 text("29 July,1990"),
-                text("Math"),
-                text("Sports"),
-                text("img/1.png"),
-                text("Krasnaya, 1-1-11"),
+                 text("Krasnaya, 1-1-11"),
                 text("NCR Noida"));
     }
 

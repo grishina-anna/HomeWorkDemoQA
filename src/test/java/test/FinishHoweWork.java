@@ -6,7 +6,7 @@ import test.TestBase;
 
 import java.io.File;
 
-import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -18,7 +18,7 @@ public class FinishHoweWork extends TestBase {
         $("#firstName").setValue("Anna");
         $("#lastName").setValue("Grishina");
         $("#userEmail").setValue("aaa@aa.aa");
-        $("#genterWrapper").$(byText("Female")).click(); //самый нормальный вариант
+         $("[for='gender-radio-1']").click();//самый нормальный вариант
         $("#userNumber").setValue("8912345678");
         $("#dateOfBirthInput").click();
         $(".react-datepicker__month-select").click();
@@ -26,7 +26,7 @@ public class FinishHoweWork extends TestBase {
         $(".react-datepicker__year-select").selectOption("1990");
         $(byText("29")).click();
         $("#subjectsInput").setValue("Math").pressEnter();
-        $("#hobbiesWrapper").$(byText("Sports")).click();
+         $("[for*='hobbies-checkbox-2']").click();
         File file = new File("src/test/resources/1.png");
         $("#uploadPicture").uploadFile(file);
         $("#currentAddress").setValue("Krasnaya, 1-1-11");
@@ -34,21 +34,19 @@ public class FinishHoweWork extends TestBase {
         $("#stateCity-wrapper").$(byText("NCR")).click();
         $("#city").click();
         $("#stateCity-wrapper").$(byText("Noida")).click();
-        $("#submit").click();
+         $("#submit").scrollIntoView(true).click();
 
-        $(".modal-header").shouldHave(text("Thanks for submitting the form"));
-        $(".modal-content").shouldHave(
-                text("Anna Grishina"),
-                text("aaa@aa.aa"),
-                text("Female"),
-                text("8912345678"),
-                text("29 July,1990"),
-                text("Math"),
-                text("Sports"),
-                text("img/1.png"),
-                text("Krasnaya, 1-1-11"),
-                text("NCR Noida"));
-    }
+         $("[class*=modal-content]").should(visible);
+         $(byText("Thanks for submitting the form")).should(appear);
+         $(".table-responsive").shouldHave(
+                 text("Anna"),
+                 text("Grishina"),
+                 text("aaa@aa.aa"),
+                 text("8912345678"),
+                 text("29 July,1990"),
+                 text("Krasnaya, 1-1-11"),
+                 text("NCR Noida"));
+     }
 
     @AfterEach
     void AfterEach() {
