@@ -13,27 +13,27 @@ import static com.codeborne.selenide.Selenide.*;
 public class FinishHoweWork extends TestBase {
 
      @Test
-    void fillFormTest() {
-        open("/automation-practice-form");
-        $("#firstName").setValue("Anna");
-        $("#lastName").setValue("Grishina");
-        $("#userEmail").setValue("aaa@aa.aa");
-         $("[for='gender-radio-1']").click();//самый нормальный вариант
-        $("#userNumber").setValue("8912345678");
-        $("#dateOfBirthInput").click();
-        $(".react-datepicker__month-select").click();
-        $(".react-datepicker__month-select").selectOption("July");
-        $(".react-datepicker__year-select").selectOption("1990");
-        $(byText("29")).click();
-        $("#subjectsInput").setValue("Math").pressEnter();
+     void fillFormTest() {
+         open("/automation-practice-form");
+         $("#firstName").setValue("Anna");
+         $("#lastName").setValue("Grishina");
+         $("#userEmail").setValue("aaa@aa.aa");
+         $("[for='gender-radio-1']").click();
+         $("#userNumber").setValue("8912345678");
+         $("#dateOfBirthInput").click();
+         $(".react-datepicker__month-select").click();
+         $(".react-datepicker__month-select").selectOption("July");
+         $(".react-datepicker__year-select").selectOption("1990");
+         $(byText("29")).click();
+         $("#subjectsInput").setValue("Math").pressEnter();
          $("[for*='hobbies-checkbox-2']").click();
-        File file = new File("src/test/resources/1.png");
-        $("#uploadPicture").uploadFile(file);
-        $("#currentAddress").setValue("Krasnaya, 1-1-11");
-        $("#state").scrollTo().click();
-        $("#stateCity-wrapper").$(byText("NCR")).click();
-        $("#city").click();
-        $("#stateCity-wrapper").$(byText("Noida")).click();
+         File file = new File("src/test/resources/1.png");
+         $("#uploadPicture").uploadFile(file);
+         $("#currentAddress").setValue("Krasnaya, 1-1-11");
+         $("#state").scrollTo().click();
+         $("#stateCity-wrapper").$(byText("NCR")).click();
+         $("#city").click();
+         $("#stateCity-wrapper").$(byText("Noida")).click();
          $("#submit").scrollIntoView(true).click();
 
          $("[class*=modal-content]").should(visible);
