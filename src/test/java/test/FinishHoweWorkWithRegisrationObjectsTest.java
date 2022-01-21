@@ -3,9 +3,10 @@ package test;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
+import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 
-public class FinishHoweWorkWithRegisrationObjects extends TestBase {
+public class FinishHoweWorkWithRegisrationObjectsTest extends TestBase {
 
     @Test
     void fillFormTest() {
@@ -14,14 +15,16 @@ public class FinishHoweWorkWithRegisrationObjects extends TestBase {
                 .typeFirstName("Anna")
                 .typeLastName("Grishina")
                 .typeUserEmail("aaa@aa.aa")
-                .selectUserGender()
-                .typeUserNumber()
-                .typeUserAddress("Krasnaya, 1-1-11")
+                .selectUserGender("Female")
+                .typeUserNumber("1234345343")
                 .setUserBirthDate("29", "July", "1990")
-                .typeUserSubjects("Math")
-                .selectUserHobbies()
-                .uploadUserFile()
+                .typeUserSubjects("Maths")
+                .selectUserHobbies("Sports")
+                .uploadUserFile("src/test/resources/1.png")
+                .typeUserAddress("Krasnaya, 1-1-11")
+                .scrollTo()
                 .selectUserStateCity("NCR")
+                .cityFillForm()
                 .selectUserCity("Noida")
                 .submitFillForm()
                 .checkResultRegistrationForm()
@@ -30,7 +33,7 @@ public class FinishHoweWorkWithRegisrationObjects extends TestBase {
         registrationPage
                 .checkResultsValue("Student Name", "Anna Grishina")
                 .checkResultsValue("Student Email", "aaa@aa.aa")
-                .checkResultsValue("Mobile", "8912345678")
+                .checkResultsValue("Mobile", "1234345343")
                 .checkResultsValue("Date of Birth", "29 July,1990")
                 .checkResultsValue("Address", "Krasnaya, 1-1-11")
                 .checkResultsValue("State and City", "NCR Noida");

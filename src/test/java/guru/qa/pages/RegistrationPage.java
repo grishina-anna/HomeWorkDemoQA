@@ -12,54 +12,37 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class RegistrationPage {
     private final String FORM_TITLE = "Student Registration Form";
-    private SelenideElement
-            formTitle = $(".practice-form-wrapper"),
-            firstNameInput = $("#firstName"),
-            lastNameInput = $("#lastName"),
-            userEmailInput = $("#userEmail"),
-            userGenderFemale = $(byText("Female")),
-            userNumberInput = $("#userNumber"),
-            userSubjectsInput = $("#subjectsInput"),
-            userHobbies = $("#hobbiesWrapper").$(byText("Sports")),
-            userFile = $("#uploadPicture"),
-            userAddressInput = $("#currentAddress"),
-            userStateCity = $("#stateCity-wrapper").$(byText("NCR")),
-            userCity = $("#stateCity-wrapper").$(byText("Noida")),
-            submit = $("#submit"),
-            resultRegistrationForm = $("[class*=modal-content]"),
-            resultsTable = $(".table-responsive"),
-            resultFormText = $(byText("Thanks for submitting the form"));
 
     public CalendarComponents calendarComponents = new CalendarComponents();
 
     public RegistrationPage openPage() {
         open("https://demoqa.com/automation-practice-form");
-        formTitle.shouldHave(text(FORM_TITLE));
+        $(".practice-form-wrapper").shouldHave(text(FORM_TITLE));
         return this;
     }
 
     public RegistrationPage typeFirstName(String value) {
-        firstNameInput.setValue(value);
+        $("#firstName").setValue(value);
         return this;
     }
 
     public RegistrationPage typeLastName(String value) {
-        lastNameInput.setValue(value);
+        $("#lastName").setValue(value);
         return this;
     }
 
     public RegistrationPage typeUserEmail(String value) {
-        userEmailInput.setValue(value);
+        $("#userEmail").setValue(value);
         return this;
     }
 
-    public RegistrationPage selectUserGender() {
-        userGenderFemale.click();
+    public RegistrationPage selectUserGender(String gender) {
+        $("[for='gender-radio-1']").click();
         return this;
     }
 
-    public RegistrationPage typeUserNumber() {
-        userNumberInput.setValue("8912345678");
+    public RegistrationPage typeUserNumber(String phoneNumber) {
+        $("#userNumber").setValue(phoneNumber);
         return this;
     }
 
@@ -69,51 +52,62 @@ public class RegistrationPage {
     }
 
     public RegistrationPage typeUserSubjects(String value){
-        userSubjectsInput.setValue(value).pressEnter();
+        $("#subjectsInput").setValue("Math").pressEnter();
         return this;
     }
 
-    public RegistrationPage selectUserHobbies(){
-        userHobbies.click();
+    public RegistrationPage selectUserHobbies(String value){
+        $("[for*='hobbies-checkbox-2']").click();
         return this;
     }
-    public RegistrationPage uploadUserFile(){
+
+    public RegistrationPage uploadUserFile(String value){
         File file = new File("src/test/resources/1.png");
-        userFile.uploadFile(file);
+        $("#uploadPicture").uploadFile(file);
         return this;
     }
 
     public RegistrationPage typeUserAddress(String value){
-        userAddressInput.setValue(value).click();
+        $("#currentAddress").setValue(value);
         return this;
     }
+    public RegistrationPage scrollTo(){
+        $("#state").scrollTo().click();
+        return this;
+    }
+
     public RegistrationPage selectUserStateCity(String value) {
-        userStateCity.setValue(value).pressEnter();
+        $("#stateCity-wrapper").$(byText("NCR")).click();
+        return this;
+    }
+
+    public RegistrationPage cityFillForm(){
+        $("#city").click();
         return this;
     }
 
     public RegistrationPage selectUserCity(String value) {
-        userCity.setValue(value).pressEnter();
+        $("#stateCity-wrapper").$(byText("Noida")).click();
         return this;
         }
 
     public RegistrationPage submitFillForm(){
-        submit.scrollIntoView(true).click();
+        $("#submit").scrollIntoView(true).click();
         return this;
     }
 
     public RegistrationPage checkResultRegistrationForm(){
-        resultRegistrationForm.should(visible);
+        $("[class*=modal-content]").should(visible);
         return this;
     }
 
     public RegistrationPage checkResultsValue(String key, String value){
-        resultsTable.$(byText(key)).parent().shouldHave(text(value));
+        $(".table-responsive").$(byText(key)).parent().shouldHave(text(value));
         return this;
     }
 
     public RegistrationPage checkResultsTable(){
-        resultFormText.should(appear);
+        $(byText("Thanks for submitting the form")).should(appear);
         return this;
     }
  }

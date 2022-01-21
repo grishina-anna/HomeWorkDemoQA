@@ -10,7 +10,7 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static guru.qa.utils.RandomUtils.getRandomString;
 
-public class FinishHoweWithTRandomUtilsWork extends TestBase {
+public class FinishHoweWithRandomUtilsWorkTest extends TestBase {
 
 
     String firstName = getRandomString(12);

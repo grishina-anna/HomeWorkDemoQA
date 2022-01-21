@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-public class FinishHoweWithTestDataWork extends TestBase {
+public class FinishHoweWithDataWorkTest extends TestBase {
 
 
     String firstName = "Anna";
